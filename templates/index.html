@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currículo Fácil</title>
+</head>
+<body>
+
+<h1>Currículo Fácil</h1>
+
+<form action="/gerar" method="POST">
+
+    <label>Nome:</label>
+    <br>
+    <input type="text" name="nome">
+    <br><br>
+
+    <label>Email:</label>
+    <br>
+    <input type="email" name="email">
+    <br><br>
+
+    <label>Telefone:</label>
+    <br>
+    <input type="text" name="telefone">
+    <br><br>
+
+    <label>Cidade:</label>
+    <br>
+    <input type="text" name="cidade">
+    <br><br>
+
+    <label>Resumo profissional:</label>
+    <br>
+    <textarea name="resumo"></textarea>
+    <br><br>
+
+    <h2>Experiências Profissionais</h2>
+
+    <label>Experiências:</label>
+
+    <textarea
+            name="experiencias"
+            rows="8"
+            cols="60"
+    ></textarea>
+
+    <p>
+    Uma experiência por linha no formato:<br>
+
+    Cargo | Empresa | Período | Descrição
+    </p>
+
+    <h2>Formação</h2>
+
+    <textarea
+        name="formacoes"
+        rows="5"
+        cols="60"
+    ></textarea>
+
+    <p>
+    Uma formação por linha no formato:<br>
+
+    Curso | Instituição
+    </p>
+
+    <h2>Certificações</h2>
+
+    <textarea
+        name="certificacoes"
+        rows="5"
+        cols="60"
+    ></textarea>
+
+    <p>
+    Uma certificação por linha.
+    </p>
+
+    <h2>Habilidades</h2>
+
+    <label>Habilidades (separadas por vírgula):</label>
+    <br>
+    <input type="text" name="habilidades">
+    <br><br>
+
+    <button type="submit">
+        Gerar currículo
+    </button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+body{
+
+    background:#f3f4f6;
+
+    font-family:Arial, sans-serif;
+
+}
+
+.curriculo{
+
+    background:white;
+
+    max-width:900px;
+
+    margin:auto;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+}
+
+.cabecalho{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:40px;
+
+}
+
+.cabecalho h1{
+
+    margin-bottom:10px;
+
+}
+
+.conteudo{
+
+    padding:40px;
+
+}
+
+h2{
+
+    color:#2563eb;
+
+    margin-top:30px;
+
+}
+
+h4{
+
+    color:#1f2937;
+
+}
+
+li{
+
+    margin-bottom:8px;
+
+}
+
+p{
+
+    color:#374151;
+
+    line-height:1.6;
+
+}
