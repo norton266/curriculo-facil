@@ -7,6 +7,8 @@ from services.parsers.formacoes import parse_formacoes
 from services.parsers.certificacoes import parse_certificacoes
 from services.parsers.habilidades import parse_habilidades
 from models.curriculo import Curriculo
+from services.parsers.idiomas import parse_idiomas
+from uploads.salvar_foto import salvar_foto
 
 app = Flask(__name__)
 
@@ -26,6 +28,11 @@ def gerar():
     telefone = request.form["telefone"]
     cidade = request.form["cidade"]
     resumo = request.form["resumo"]
+    linkedin = request.form["linkedin"]
+    github = request.form["github"]
+    foto = request.files["foto"]
+
+    caminho_foto = salvar_foto(foto)
 
     experiencias = parse_experiencias(
         request.form["experiencias"]
@@ -43,17 +50,30 @@ def gerar():
         request.form["habilidades"]
     )
 
-    curriculo = Curriculo(
-        nome,
-        email,
-        telefone,
-        cidade,
-        resumo,
-        experiencias,
-        formacoes,
-        certificacoes,
-        habilidades
+    idiomas = parse_idiomas(
+        request.form["idiomas"]
     )
+
+    
+    curriculo = Curriculo(
+        nome=nome,
+        email=email,
+        telefone=telefone,
+        cidade=cidade,
+        foto=caminho_foto,
+
+        linkedin=linkedin,
+        github=github,
+
+        resumo=resumo,
+
+        experiencias=experiencias,
+        formacoes=formacoes,
+        certificacoes=certificacoes,
+        habilidades=habilidades,
+        idiomas=idiomas
+    )
+
 
     gerar_pdf(
         modelo,

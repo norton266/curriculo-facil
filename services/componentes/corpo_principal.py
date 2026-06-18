@@ -1,44 +1,16 @@
-from reportlab.platypus import (
-    SimpleDocTemplate,
-    Paragraph,
-    Spacer
-)
+from reportlab.platypus import Paragraph, Spacer
 
-from services.componentes.estilos import criar_estilos
-from services.componentes.cabecalho import adicionar_cabecalho
 from services.componentes.secao import adicionar_secao
 from services.componentes.experiencias import adicionar_experiencias
 from services.componentes.formacoes import adicionar_formacoes
 from services.componentes.lista import adicionar_lista
 
 
-def gerar_pdf_modelo(
-        cor_titulo,
-        cor_subtitulo,
-        curriculo
-):
-
-    estilos = criar_estilos(
-        cor_titulo,
-        cor_subtitulo
-    )
-
-    doc = SimpleDocTemplate(
-        "pdfs/curriculo.pdf"
-    )
-
-    conteudo = []
-
-    # CABEÇALHO
-
-    adicionar_cabecalho(
+def adicionar_corpo_principal(
         conteudo,
         estilos,
-        curriculo.nome,
-        curriculo.telefone,
-        curriculo.email,
-        curriculo.cidade
-    )
+        curriculo
+):
 
     # RESUMO
 
@@ -83,23 +55,3 @@ def gerar_pdf_modelo(
         "Certificações",
         curriculo.certificacoes
     )
-
-    # HABILIDADES
-
-    adicionar_lista(
-        conteudo,
-        estilos,
-        "Habilidades",
-        curriculo.habilidades
-    )
-
-    # IDIOMAS
-
-    adicionar_lista(
-        conteudo,
-        estilos,
-        "Idiomas",
-        curriculo.idiomas
-    )
-    
-    doc.build(conteudo)

@@ -7,7 +7,7 @@
 
 <h1>Currículo Fácil</h1>
 
-<form action="/gerar" method="POST">
+<form action="/gerar" method="POST" enctype="multipart/form-data">
 
     <label>Nome:</label>
     <br>
@@ -28,6 +28,16 @@
     <br>
     <input type="text" name="cidade">
     <br><br>
+
+    
+    <label>Foto</label>
+
+    <input
+        type="file"
+        name="foto"
+        accept="image/*">
+
+
 
     <label>Resumo profissional:</label>
     <br>
@@ -83,9 +93,29 @@
     <input type="text" name="habilidades">
     <br><br>
 
+    <label>LinkedIn</label>
+    <input
+        type="text"
+        name="linkedin"
+        placeholder="linkedin.com/in/seu-perfil">
+
+    <label>GitHub</label>
+    <input
+        type="text"
+        name="github"
+        placeholder="github.com/seu-usuario">
+
+    <label>Idiomas</label>
+
+    <textarea
+    name="idiomas"
+    placeholder="Português - Nativo
+    Inglês - Intermediário
+    Espanhol - Básico"></textarea>    
+
     <label for="modelo">
-    Modelo do currículo
-</label>
+        Modelo do currículo
+    </label>
 
 <select name="modelo" id="modelo">
 
@@ -99,6 +129,10 @@
 
     <option value="minimalista">
         Minimalista
+    </option>
+
+    <option value="duas_colunas">
+        Duas Colunas
     </option>
 
 </select>

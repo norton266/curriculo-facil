@@ -1,3 +1,5 @@
+from models.formacao import Formacao
+
 def parse_formacoes(formacoes_texto):
 
     formacoes = []
@@ -8,9 +10,6 @@ def parse_formacoes(formacoes_texto):
 
         if len(partes) == 2:
 
-            formacoes.append({
-                "curso": partes[0].strip(),
-                "instituicao": partes[1].strip()
-            })
+            formacoes.append( Formacao( curso=partes[0].strip(), instituicao=partes[1].strip() ) )
 
     return formacoes

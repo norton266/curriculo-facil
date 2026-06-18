@@ -1,25 +1,23 @@
+
+from dataclasses import dataclass
+
+
+@dataclass
 class Curriculo:
 
-    def __init__(
-            self,
-            nome,
-            email,
-            telefone,
-            cidade,
-            resumo,
-            experiencias,
-            formacoes,
-            certificacoes,
-            habilidades
-    ):
+    nome: str
+    email: str
+    telefone: str
+    cidade: str
+    foto: str
 
-        self.nome = nome
-        self.email = email
-        self.telefone = telefone
-        self.cidade = cidade
-        self.resumo = resumo
+    linkedin: str
+    github: str
 
-        self.experiencias = experiencias
-        self.formacoes = formacoes
-        self.certificacoes = certificacoes
-        self.habilidades = habilidades
+    resumo: str
+
+    experiencias: list
+    formacoes: list
+    certificacoes: list
+    habilidades: list
+    idiomas: list

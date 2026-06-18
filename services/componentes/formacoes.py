@@ -19,14 +19,14 @@ def adicionar_formacoes(
 
         conteudo.append(
             Paragraph(
-                formacao["curso"],
+                formacao.curso,
                 estilos["cargo"]
             )
         )
 
         conteudo.append(
             Paragraph(
-                formacao["instituicao"],
+                formacao.instituicao,
                 estilos["normal"]
             )
         )

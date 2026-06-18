@@ -1,3 +1,5 @@
+from models.experiencia import Experiencia
+
 def parse_experiencias(experiencias_texto):
 
     experiencias = []
@@ -8,11 +10,15 @@ def parse_experiencias(experiencias_texto):
 
         if len(partes) == 4:
 
-            experiencias.append({
-                "cargo": partes[0].strip(),
-                "empresa": partes[1].strip(),
-                "periodo": partes[2].strip(),
-                "descricao": partes[3].strip()
-            })
+            
+            experiencias.append(
+                Experiencia(
+                    cargo=partes[0].strip(),
+                    empresa=partes[1].strip(),
+                    periodo=partes[2].strip(),
+                    descricao=partes[3].strip()
+                )
+            )
+
 
     return experiencias

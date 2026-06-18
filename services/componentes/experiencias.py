@@ -1,3 +1,4 @@
+
 from reportlab.platypus import Paragraph, Spacer
 
 from services.componentes.secao import adicionar_secao
@@ -19,21 +20,21 @@ def adicionar_experiencias(
 
         conteudo.append(
             Paragraph(
-                experiencia["cargo"],
+                experiencia.cargo,
                 estilos["cargo"]
             )
         )
 
         conteudo.append(
             Paragraph(
-                f"<b>{experiencia['empresa']}</b> | {experiencia['periodo']}",
+                f"<b>{experiencia.empresa}</b> | {experiencia.periodo}",
                 estilos["normal"]
             )
         )
 
         conteudo.append(
             Paragraph(
-                experiencia["descricao"],
+                experiencia.descricao,
                 estilos["normal"]
             )
         )
