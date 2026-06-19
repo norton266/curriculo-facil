@@ -21,6 +21,6 @@ def gerar_pdf(
         gerar_pdf_moderno
     )
 
-    funcao_modelo(
+    return funcao_modelo(
         curriculo
     )

@@ -4,6 +4,7 @@
     <title>Currículo Fácil</title>
 </head>
 <body>
+    <script src="/static/js/formulario.js"></script>
 
 <h1>Currículo Fácil</h1>
 
@@ -11,17 +12,17 @@
 
     <label>Nome:</label>
     <br>
-    <input type="text" name="nome">
+    <input type="text" name="nome" required>
     <br><br>
 
     <label>Email:</label>
     <br>
-    <input type="email" name="email">
+    <input type="email" name="email" required>
     <br><br>
 
     <label>Telefone:</label>
     <br>
-    <input type="text" name="telefone">
+    <input type="text" name="telefone" required>
     <br><br>
 
     <label>Cidade:</label>
@@ -44,43 +45,77 @@
     <textarea name="resumo"></textarea>
     <br><br>
 
-    <h2>Experiências Profissionais</h2>
+    <h2>Experiências</h2>
 
-    <label>Experiências:</label>
+    <div id="experiencias">
 
-    <textarea
-            name="experiencias"
-            rows="8"
-            cols="60"
-    ></textarea>
+        <div class="experiencia">
 
-    <p>
-    Uma experiência por linha no formato:<br>
+            <input
+                type="text"
+                name="cargo[]"
+                placeholder="Cargo">
 
-    Cargo | Empresa | Período | Descrição
-    </p>
+            <input
+                type="text"
+                name="empresa[]"
+                placeholder="Empresa">
+
+            <input
+                type="text"
+                name="periodo[]"
+                placeholder="Período">
+
+            <textarea
+                name="descricao[]"
+                placeholder="Descrição">
+            </textarea>
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        onclick="adicionarExperiencia()">
+
+        + Adicionar experiência
+
+    </button>
 
     <h2>Formação</h2>
 
-    <textarea
-        name="formacoes"
-        rows="5"
-        cols="60"
-    ></textarea>
+    <div id="formacoes">
 
-    <p>
-    Uma formação por linha no formato:<br>
+        <div class="formacao">
 
-    Curso | Instituição
-    </p>
+            <input type="text" name="curso[]" placeholder="Curso">
+
+            <input type="text" name="instituicao[]" placeholder="Instituição">
+
+        </div>
+
+    </div>
+
+    <button type="button" onclick="adicionarFormacao()">
+        + Adicionar formação
+    </button>
 
     <h2>Certificações</h2>
 
-    <textarea
-        name="certificacoes"
-        rows="5"
-        cols="60"
-    ></textarea>
+    <div id="certificacoes">
+
+        <div class="certificacao">
+
+            <input type="text" name="certificacao[]" placeholder="Certificação">
+
+        </div>
+
+    </div>
+
+    <button type="button" onclick="adicionarCertificacao()">
+        + Adicionar certificação
+    </button>
 
     <p>
     Uma certificação por linha.
@@ -88,10 +123,19 @@
 
     <h2>Habilidades</h2>
 
-    <label>Habilidades (separadas por vírgula):</label>
-    <br>
-    <input type="text" name="habilidades">
-    <br><br>
+    <div id="habilidades">
+
+        <div class="habilidade">
+
+            <input type="text" name="habilidade[]" placeholder="Habilidade">
+
+        </div>
+
+    </div>
+
+    <button type="button" onclick="adicionarHabilidade()">
+        + Adicionar habilidade
+    </button>
 
     <label>LinkedIn</label>
     <input
@@ -105,13 +149,21 @@
         name="github"
         placeholder="github.com/seu-usuario">
 
-    <label>Idiomas</label>
+    <h2>Idiomas</h2>
 
-    <textarea
-    name="idiomas"
-    placeholder="Português - Nativo
-    Inglês - Intermediário
-    Espanhol - Básico"></textarea>    
+    <div id="idiomas">
+
+        <div class="idioma">
+
+            <input type="text" name="idioma[]" placeholder="Idioma">
+
+        </div>
+
+    </div>
+
+    <button type="button" onclick="adicionarIdioma()">
+        + Adicionar idioma
+    </button>
 
     <label for="modelo">
         Modelo do currículo

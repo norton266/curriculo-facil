@@ -1,9 +1,7 @@
-from reportlab.platypus import Paragraph, Spacer
-
-from services.componentes.secao import adicionar_secao
-from services.componentes.experiencias import adicionar_experiencias
-from services.componentes.formacoes import adicionar_formacoes
-from services.componentes.lista import adicionar_lista
+from services.componentes.corpo.resumo import adicionar_resumo
+from services.componentes.corpo.experiencias import adicionar_experiencias
+from services.componentes.corpo.formacoes import adicionar_formacoes
+from services.componentes.corpo.certificacoes import adicionar_certificacoes
 
 
 def adicionar_corpo_principal(
@@ -12,46 +10,26 @@ def adicionar_corpo_principal(
         curriculo
 ):
 
-    # RESUMO
-
-    adicionar_secao(
+    adicionar_resumo(
         conteudo,
         estilos,
-        "Resumo Profissional"
+        curriculo
     )
-
-    conteudo.append(
-        Paragraph(
-            curriculo.resumo,
-            estilos["normal"]
-        )
-    )
-
-    conteudo.append(
-        Spacer(1, 20)
-    )
-
-    # EXPERIÊNCIAS
 
     adicionar_experiencias(
         conteudo,
         estilos,
-        curriculo.experiencias
+        curriculo
     )
-
-    # FORMAÇÕES
 
     adicionar_formacoes(
         conteudo,
         estilos,
-        curriculo.formacoes
+        curriculo
     )
 
-    # CERTIFICAÇÕES
-
-    adicionar_lista(
+    adicionar_certificacoes(
         conteudo,
         estilos,
-        "Certificações",
-        curriculo.certificacoes
+        curriculo
     )

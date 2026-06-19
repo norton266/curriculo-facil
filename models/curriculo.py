@@ -1,18 +1,14 @@
 
 from dataclasses import dataclass
-
+from models.contato import Contato
 
 @dataclass
 class Curriculo:
 
     nome: str
-    email: str
-    telefone: str
-    cidade: str
     foto: str
 
-    linkedin: str
-    github: str
+    contato: Contato
 
     resumo: str
 

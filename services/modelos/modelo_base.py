@@ -4,6 +4,7 @@ from reportlab.platypus import (
     Spacer
 )
 
+from io import BytesIO
 from services.componentes.estilos import criar_estilos
 from services.componentes.cabecalho import adicionar_cabecalho
 from services.componentes.secao import adicionar_secao
@@ -23,8 +24,12 @@ def gerar_pdf_modelo(
         cor_subtitulo
     )
 
+    #bytesIO
+
+    buffer = BytesIO()
+
     doc = SimpleDocTemplate(
-        "pdfs/curriculo.pdf"
+        buffer
     )
 
     conteudo = []
@@ -103,3 +108,7 @@ def gerar_pdf_modelo(
     )
     
     doc.build(conteudo)
+
+    buffer.seek(0)
+
+    return buffer

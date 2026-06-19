@@ -11,13 +11,15 @@ from services.componentes.estilos import (
 )
 
 from reportlab.lib import colors
-
+from io import BytesIO
 from services.componentes.estilos import criar_estilos
 from services.componentes.sidebar import adicionar_sidebar
 from services.componentes.corpo_principal import adicionar_corpo_principal
 
 
 def gerar_pdf_duas_colunas(curriculo):
+
+    buffer = BytesIO()
 
     estilos = criar_estilos(
         "#2563EB",
@@ -27,7 +29,7 @@ def gerar_pdf_duas_colunas(curriculo):
     estilos_sidebar = criar_estilos_sidebar()
 
     doc = SimpleDocTemplate(
-        "pdfs/curriculo.pdf"
+        buffer
     )
 
     conteudo = []
@@ -105,3 +107,9 @@ def gerar_pdf_duas_colunas(curriculo):
     doc.build(
         conteudo
     )
+
+    buffer.seek(0)
+
+    return buffer
+
+    
