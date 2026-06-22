@@ -1,39 +1,22 @@
-// ==========================
-// FUNÇÃO GENÉRICA DE CLONE
-// ==========================
-
-function adicionarCampo(containerId, className) {
-
-    const container = document.getElementById(containerId);
-
-    const template = container.querySelector("." + className);
-
-    const clone = template.cloneNode(true);
-
-    // limpa inputs do clone
-    const inputs = clone.querySelectorAll("input, textarea");
-
-    inputs.forEach(input => input.value = "");
-
-    container.appendChild(clone);
+function removerItem(botao) {
+    botao.parentElement.remove();
 }
 
-function adicionarExperiencia() {
-    adicionarCampo("experiencias", "experiencia");
+
+function adicionarItem(idContainer, html) {
+
+    const container = document.getElementById(idContainer);
+
+    container.insertAdjacentHTML("beforeend", html);
 }
 
-function adicionarFormacao() {
-    adicionarCampo("formacoes", "formacao");
-}
 
-function adicionarCertificacao() {
-    adicionarCampo("certificacoes", "certificacao");
-}
+// função genérica, todos os formulários que adicionam itens em lista usam
+function adicionar(tipo, container) {
 
-function adicionarHabilidade() {
-    adicionarCampo("habilidades", "habilidade");
-}
+    adicionarItem(
+        container,
+        templates[tipo]
+    );
 
-function adicionarIdioma() {
-    adicionarCampo("idiomas", "idioma");
 }

@@ -40,9 +40,9 @@ def gerar_pdf_modelo(
         conteudo,
         estilos,
         curriculo.nome,
-        curriculo.telefone,
-        curriculo.email,
-        curriculo.cidade
+        curriculo.contato.telefone,
+        curriculo.contato.email,
+        curriculo.contato.cidade
     )
 
     # RESUMO
