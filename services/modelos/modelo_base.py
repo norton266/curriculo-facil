@@ -11,6 +11,7 @@ from services.componentes.secao import adicionar_secao
 from services.componentes.experiencias import adicionar_experiencias
 from services.componentes.formacoes import adicionar_formacoes
 from services.componentes.lista import adicionar_lista
+from services.layouts import LayoutUmaColuna
 
 
 def gerar_pdf_modelo(
@@ -24,15 +25,9 @@ def gerar_pdf_modelo(
         cor_subtitulo
     )
 
-    #bytesIO
+    layout = LayoutUmaColuna()
 
-    buffer = BytesIO()
-
-    doc = SimpleDocTemplate(
-        buffer
-    )
-
-    conteudo = []
+    conteudo = layout.conteudo
 
     # CABEÇALHO
 
@@ -107,8 +102,4 @@ def gerar_pdf_modelo(
         curriculo.idiomas
     )
     
-    doc.build(conteudo)
-
-    buffer.seek(0)
-
-    return buffer
+    return layout.gerar()
