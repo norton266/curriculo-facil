@@ -4,6 +4,7 @@ from services.gerador_pdf import gerar_pdf
 from services.pdf.pdf_service import enviar_pdf
 
 from services.builders.curriculo_builder import criar_curriculo
+from services.validators.curriculo_validator import validar_curriculo
 
 app = Flask(__name__)
 
@@ -20,12 +21,23 @@ def gerar():
 
     curriculo = criar_curriculo(request)
 
+    erros = validar_curriculo(curriculo)
+
+    if erros:
+        return render_template(
+            "index.html",
+            erros=erros
+        )
+
     pdf = gerar_pdf(
         modelo,
         curriculo
     )
 
-    return enviar_pdf(pdf, curriculo.nome)
+    return enviar_pdf(
+        pdf,
+        curriculo.nome
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

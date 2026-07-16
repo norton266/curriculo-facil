@@ -166,3 +166,10 @@ button[type="submit"] {
 
     background: #B91C1C;
 }
+
+.erro-campo {
+    color: #dc2626;
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}

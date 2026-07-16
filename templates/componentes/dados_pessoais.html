@@ -10,7 +10,14 @@
 
         <input
             type="text"
-            name="nome">
+            name="nome"
+            placeholder="Nome completo">
+
+            {% if erros and erros.nome %}
+                <p class="erro-campo">
+                    {{erros.nome}}
+                </p>
+            {% endif %}
 
     </div>
 
@@ -20,7 +27,14 @@
 
         <input
             type="email"
-            name="email">
+            name="email"
+            placeholder="E-mail">
+
+            {% if erros and erros.email %}
+                <p class="erro-campo">
+                    {{ erros.email }}
+                </p>
+            {% endif %}
 
     </div>
 
@@ -30,7 +44,14 @@
 
         <input
             type="text"
-            name="telefone">
+            name="telefone"
+            placeholder="(XX)XXXXX-XXXX">
+
+            {% if erros and erros.telefone %}
+                <p class="erro-campo">
+                    {{erros.telefone}}
+                </p>
+            {% endif %}
 
     </div>
 

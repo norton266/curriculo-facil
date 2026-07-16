@@ -1,7 +1,14 @@
 <h2>Resumo profissional</h2>
 
 <textarea
-    name="resumo">
+    name="resumo"
+    placeholder="Digite seu resumo profissional">
 </textarea>
+
+{% if erros and erros.resumo %}
+        <p class="erro-campo">
+            {{ erros.resumo }}
+        </p>
+{% endif %}
 
 <br><br>

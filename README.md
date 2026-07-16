@@ -1,10 +1,9 @@
 # Currículo Fácil
 
-Gerador de currículos em PDF desenvolvido com **Python**, **Flask** e **ReportLab**.
+> Gere currículos profissionais em PDF em poucos minutos.
 
-O objetivo do projeto é permitir que qualquer pessoa preencha um formulário simples e gere um currículo profissional em diferentes modelos, de forma rápida e gratuita.
+Projeto desenvolvido com foco em arquitetura de software, organização de código e boas práticas de desenvolvimento em Python. Além de gerar currículos em diferentes modelos, o projeto serve como demonstração de conceitos como Builders, Layouts, Renderers, modularização do frontend e separação de responsabilidades (SRP).
 
----
 
 # Funcionalidades
 

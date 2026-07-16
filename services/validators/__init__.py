@@ -1,0 +1,1 @@
+from .curriculo_validator import validar_curriculo
