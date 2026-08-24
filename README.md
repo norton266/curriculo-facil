@@ -66,7 +66,7 @@ e também cuidava do caixa.
 A partir da conversa, a aplicação deverá identificar e organizar as informações relevantes para a construção do currículo.
 
 ---
-text´´´
+```text
 
 Estado atual da Inteligência Artificial
 
