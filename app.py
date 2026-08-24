@@ -6,12 +6,28 @@ from services.pdf.pdf_service import enviar_pdf
 from services.builders.curriculo_builder import criar_curriculo
 from services.validators.curriculo_validator import validar_curriculo
 
+from services.ai.curriculo_ai import CurriculoAI
+
 app = Flask(__name__)
+assistente = CurriculoAI()
 
 
 @app.route('/')
 def home():
     return render_template("index.html")
+
+@app.route('/ia', methods=['POST'])
+def conversar_ia():
+
+    mensagem = request.json.get("mensagem")
+
+    resposta = assistente.conversar(
+        mensagem
+    )
+
+    return {
+        "resposta": resposta
+    }
 
 
 @app.route('/gerar', methods=['POST'])
