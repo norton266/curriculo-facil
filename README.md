@@ -62,11 +62,9 @@ Usuário:
 Loja X. Eu atendia clientes, organizava produtos
 e também cuidava do caixa.
 
-
-A partir da conversa, a aplicação deverá identificar e organizar as informações relevantes para a construção do currículo.
-
 ---
-```text
+```
+A partir da conversa, a aplicação deverá identificar e organizar as informações relevantes para a construção do currículo.
 
 Estado atual da Inteligência Artificial
 
