@@ -4,7 +4,7 @@
 
 Projeto desenvolvido com foco em arquitetura de software, organização de código e boas práticas de desenvolvimento em Python.
 
-Além de gerar currículos em diferentes modelos, o projeto utiliza uma arquitetura modular baseada em Builders, Layouts, Renderers, componentes reutilizáveis e separação de responsabilidades (SRP).
+Além de gerar currículos em diferentes modelos, o projeto utiliza uma arquitetura modular baseada em **Builders, Layouts, Renderers**, componentes reutilizáveis e separação de responsabilidades (**SRP**).
 
 Atualmente, o projeto também está evoluindo para incorporar **Inteligência Artificial através de uma LLM (Large Language Model)**, permitindo que o usuário possa futuramente criar seu currículo através de uma conversa natural com o sistema.
 
@@ -19,10 +19,10 @@ A proposta é auxiliar principalmente pessoas que possuem dificuldade de escrita
 - Geração automática de currículo em PDF
 - Upload de foto
 - Múltiplos modelos de currículo
-    - Moderno
-    - Executivo
-    - Minimalista
-    - Duas Colunas
+  - Moderno
+  - Executivo
+  - Minimalista
+  - Duas Colunas
 - Experiências dinâmicas
 - Formações dinâmicas
 - Certificações dinâmicas
@@ -30,16 +30,18 @@ A proposta é auxiliar principalmente pessoas que possuem dificuldade de escrita
 - Idiomas dinâmicos
 - LinkedIn
 - GitHub
-- Salvamento automático do formulário (LocalStorage)
+- Salvamento automático do formulário (`LocalStorage`)
 - Download imediato do PDF
 
-## Inteligência Artificial
+---
+
+# Inteligência Artificial
 
 O projeto possui uma integração com uma **LLM (Large Language Model)** utilizando a **Gemini API**.
 
 A proposta da Inteligência Artificial é permitir que o usuário construa seu currículo através de uma conversa natural, sem precisar conhecer previamente a estrutura de um currículo ou saber exatamente como descrever suas experiências.
 
-Por exemplo:
+### Exemplo de interação
 
 ```text
 IA:
@@ -61,48 +63,53 @@ Legal! Qual era o nome da empresa e quais eram suas principais atividades?
 Usuário:
 Loja X. Eu atendia clientes, organizava produtos
 e também cuidava do caixa.
-
+```
 
 A partir da conversa, a aplicação deverá identificar e organizar as informações relevantes para a construção do currículo.
 
 ---
 
-Estado atual da Inteligência Artificial
+# Estado atual da Inteligência Artificial
 
-A integração inicial com a Gemini API já foi implementada.
+A integração inicial com a **Gemini API** já foi implementada.
 
-Implementado
- Integração com Gemini API
- Configuração da API através de .env
- Criação do LLMService
- Envio de mensagens para a LLM
- Recebimento de respostas da Gemini
- Teste inicial de comunicação com a LLM
- Primeira resposta funcional da IA
+## Implementado
 
-Em desenvolvimento
- Implementação completa do CurriculoAI
- Definição do fluxo de entrevista
- Memória/contexto da conversa
- Prompt especializado para criação de currículos
- Extração estruturada das informações
- Validação das informações coletadas
- Confirmação dos dados pelo usuário
- Integração com o modelo Curriculo
- Integração com o CurriculoBuilder
- Geração automática do currículo a partir da conversa
- Interface de chat no frontend
+- [x] Integração com Gemini API
+- [x] Configuração da API através de `.env`
+- [x] Criação do `LLMService`
+- [x] Envio de mensagens para a LLM
+- [x] Recebimento de respostas da Gemini
+- [x] Teste inicial de comunicação com a LLM
+- [x] Primeira resposta funcional da IA
 
-Atualmente, a LLM já consegue receber uma mensagem e gerar uma resposta, porém o fluxo completo de criação do currículo através da conversa ainda está em desenvolvimento.
+## Em desenvolvimento
 
-Objetivo da Inteligência Artificial
+- [ ] Implementação completa do `CurriculoAI`
+- [ ] Definição do fluxo de entrevista
+- [ ] Memória/contexto da conversa
+- [ ] Prompt especializado para criação de currículos
+- [ ] Extração estruturada das informações
+- [ ] Validação das informações coletadas
+- [ ] Confirmação dos dados pelo usuário
+- [ ] Integração com o modelo `Curriculo`
+- [ ] Integração com o `CurriculoBuilder`
+- [ ] Geração automática do currículo a partir da conversa
+- [ ] Interface de chat no frontend
 
-A IA será responsável por conduzir uma entrevista conversacional com o usuário.
+> Atualmente, a LLM já consegue receber uma mensagem e gerar uma resposta, porém o fluxo completo de criação do currículo através da conversa ainda está em desenvolvimento.
+
+---
+
+# Objetivo da Inteligência Artificial
+
+A IA será responsável por conduzir uma **entrevista conversacional** com o usuário.
 
 O objetivo é transformar informações fornecidas de maneira livre e desestruturada em informações organizadas que possam ser utilizadas pelo sistema de geração de currículos.
 
-o fluxo planejado é:
+## Fluxo planejado
 
+```text
 Usuário inicia a conversa
         ↓
 IA identifica o objetivo profissional
@@ -130,13 +137,17 @@ Dados estruturados
 CurriculoBuilder
         ↓
 Geração do PDF
+```
 
-Arquitetura da Inteligência Artificial
+---
 
-A integração da LLM foi desenvolvida de forma separada do restante da aplicação, mantendo baixo acoplamento entre o provedor de IA e as regras de negócio do sistema.
+# Arquitetura da Inteligência Artificial
 
-Arquitetura atual:
+A integração da LLM foi desenvolvida de forma separada do restante da aplicação, mantendo **baixo acoplamento** entre o provedor de IA e as regras de negócio do sistema.
 
+## Arquitetura atual
+
+```text
 Usuário
     ↓
 CurriculoAI
@@ -146,9 +157,11 @@ LLMService
 Gemini API
     ↓
 Resposta da IA
+```
 
-Arquitetura planejada:
+## Arquitetura planejada
 
+```text
                     Usuário
                        ↓
               Interface de Chat
@@ -180,17 +193,21 @@ Arquitetura planejada:
                    ReportLab
                        ↓
                       PDF
+```
 
 Essa separação permite que o provedor da LLM possa ser alterado futuramente sem modificar as regras principais da aplicação.
 
-Estrutura de dados planejada
+---
+
+# Estrutura de dados planejada
 
 A conversa com a IA não deverá resultar apenas em um texto livre.
 
-A aplicação deverá transformar as informações coletadas em dados estruturados.
+A aplicação deverá transformar as informações coletadas em **dados estruturados**.
 
-Exemplo:
+## Exemplo
 
+```json
 {
     "dados_pessoais": {
         "nome": "João da Silva",
@@ -215,9 +232,11 @@ Exemplo:
     ],
     "idiomas": []
 }
+```
 
 Esses dados poderão ser utilizados pelo modelo de domínio existente:
 
+```text
 Conversa
     ↓
 LLM
@@ -235,45 +254,52 @@ Renderers
 ReportLab
     ↓
 PDF
+```
 
-Funcionalidades planejadas para a IA
+---
+
+# Funcionalidades planejadas para a IA
 
 Além da criação do currículo através de uma conversa, a LLM poderá futuramente ser utilizada para:
 
-Criar currículo a partir de informações desestruturadas
-Auxiliar usuários com dificuldade de escrita
-Melhorar descrições de experiências profissionais
-Sugerir formas mais profissionais de apresentar experiências
-Identificar habilidades a partir das experiências informadas
-Adaptar o currículo para uma vaga específica
-Identificar informações que estão faltando
-Sugerir melhorias no currículo
-Auxiliar na criação do objetivo profissional
-Gerar descrições profissionais sem inventar experiências
-Solicitar confirmação antes de alterar informações importantes
+- Criar currículo a partir de informações desestruturadas
+- Auxiliar usuários com dificuldade de escrita
+- Melhorar descrições de experiências profissionais
+- Sugerir formas mais profissionais de apresentar experiências
+- Identificar habilidades a partir das experiências informadas
+- Adaptar o currículo para uma vaga específica
+- Identificar informações que estão faltando
+- Sugerir melhorias no currículo
+- Auxiliar na criação do objetivo profissional
+- Gerar descrições profissionais sem inventar experiências
+- Solicitar confirmação antes de alterar informações importantes
 
-Tecnologias
+---
 
-Backend
+# Tecnologias
 
-Python 3
-Flask
-ReportLab
-Google Gemini API
-Google GenAI SDK
-python-dotenv
+## Backend
 
-Frontend
+- Python 3
+- Flask
+- ReportLab
+- Google Gemini API
+- Google GenAI SDK
+- `python-dotenv`
 
-HTML5
-CSS3
-JavaScript
-LocalStorage
-Inteligência Artificial
-LLM (Large Language Model)
-Gemini API
-google-genai
+## Frontend
 
-Testes
+- HTML5
+- CSS3
+- JavaScript
+- `LocalStorage`
 
-pytest
+## Inteligência Artificial
+
+- LLM (Large Language Model)
+- Gemini API
+- `google-genai`
+
+## Testes
+
+- `pytest`
