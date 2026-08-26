@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
+from services.ai.schemas import RespostaCurriculoSchema
+
 
 load_dotenv()
 
@@ -35,20 +37,36 @@ class LLMService:
             if role == "system":
                 continue
 
-            gemini_role = "model" if role == "assistant" else "user"
+            gemini_role = (
+                "model"
+                if role == "assistant"
+                else "user"
+            )
 
             contents.append(
                 types.Content(
                     role=gemini_role,
                     parts=[
-                        types.Part.from_text(text=content)
+                        types.Part.from_text(
+                            text=content
+                        )
                     ]
                 )
             )
 
         resposta = self.client.models.generate_content(
+
             model="gemini-3.6-flash",
-            contents=contents
+
+            contents=contents,
+
+            config=types.GenerateContentConfig(
+
+                response_mime_type="application/json",
+
+                response_schema=RespostaCurriculoSchema
+
+            )
         )
 
         return resposta.text

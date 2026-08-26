@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from flask import jsonify
 
 from services.gerador_pdf import gerar_pdf
 from services.pdf.pdf_service import enviar_pdf
@@ -25,9 +26,7 @@ def conversar_ia():
         mensagem
     )
 
-    return {
-        "resposta": resposta
-    }
+    return jsonify(resposta)
 
 
 @app.route('/gerar', methods=['POST'])
