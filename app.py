@@ -1,15 +1,18 @@
-from flask import Flask, render_template, request
-from flask import jsonify
+from flask import Flask, render_template, request, jsonify
 
 from services.gerador_pdf import gerar_pdf
 from services.pdf.pdf_service import enviar_pdf
 
 from services.builders.curriculo_builder import criar_curriculo
+from services.builders.ia_curriculo_builder import criar_curriculo_com_dados
+
 from services.validators.curriculo_validator import validar_curriculo
 
 from services.ai.curriculo_ai import CurriculoAI
 
+
 app = Flask(__name__)
+
 assistente = CurriculoAI()
 
 
@@ -17,16 +20,54 @@ assistente = CurriculoAI()
 def home():
     return render_template("index.html")
 
-@app.route('/ia', methods=['POST'])
+
+@app.route('/ia')
+def pagina_ia():
+    return render_template("ia.html")
+
+
+@app.route('/api/ia/conversar', methods=['POST'])
 def conversar_ia():
 
     mensagem = request.json.get("mensagem")
+
+    if not mensagem:
+        return jsonify({
+            "erro": "Mensagem não informada."
+        }), 400
 
     resposta = assistente.conversar(
         mensagem
     )
 
     return jsonify(resposta)
+
+@app.route('/api/ia/gerar', methods=['POST'])
+def gerar_curriculo_ia():
+
+    dados = assistente.obter_curriculo()
+
+    curriculo = criar_curriculo_com_dados(
+        dados
+    )
+
+    erros = validar_curriculo(curriculo)
+
+    if erros:
+        return jsonify({
+            "erro": "Não foi possível gerar o currículo.",
+            "detalhes": erros
+        }), 400
+
+    pdf = gerar_pdf(
+        "moderno",
+        curriculo
+    )
+
+    return enviar_pdf(
+        pdf,
+        curriculo.nome
+    )
 
 
 @app.route('/gerar', methods=['POST'])
@@ -53,6 +94,7 @@ def gerar():
         pdf,
         curriculo.nome
     )
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -57,6 +57,8 @@ class CurriculoAI:
             }
         )
 
+        dados["curriculo"] = self.obter_curriculo()
+
         return dados
 
     def _interpretar_resposta(self, resposta):

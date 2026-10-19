@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Currículo Fácil - Assistente</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/ia.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="app-container">
+
+
+        <!-- =========================================
+             CABEÇALHO
+        ========================================== -->
+
+        <header class="app-header">
+
+            <div class="header-content">
+
+                <div>
+
+                    <h1>
+                        Currículo Fácil
+                    </h1>
+
+                    <p>
+                        Vamos construir seu currículo juntos
+                    </p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             ÁREA PRINCIPAL
+        ========================================== -->
+
+        <main class="main-container">
+
+
+            <!-- =====================================
+                 CHAT
+            ====================================== -->
+
+            <section class="chat-container">
+
+
+                <div class="chat-header">
+
+                    <div class="ia-avatar">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Assistente
+                        </h2>
+
+                        <span>
+                            Vamos criar seu currículo
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MENSAGENS -->
+
+                <div
+                    id="chat"
+                    class="chat-messages"
+                >
+
+                    <div class="mensagem mensagem-ia">
+
+                        <div class="mensagem-avatar">
+                            🤖
+                        </div>
+
+                        <div class="mensagem-conteudo">
+
+                            Olá! 👋
+
+                            <br>
+                            <br>
+
+                            Vou ajudar você a criar seu currículo.
+
+                            <br>
+                            <br>
+
+                            Podemos começar pelo seu nome?
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CAMPO DE DIGITAÇÃO -->
+
+                <form
+                    id="form-chat"
+                    class="chat-input"
+                >
+
+                    <input
+                        type="text"
+                        id="mensagem"
+                        name="mensagem"
+                        placeholder="Digite sua mensagem..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="submit"
+                        id="btn-enviar"
+                    >
+                        Enviar
+                    </button>
+
+                </form>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 PAINEL DE PROGRESSO
+            ====================================== -->
+
+            <aside class="progresso-container">
+
+
+                <div class="progresso-header">
+
+                    <h2>
+                        Seu currículo
+                    </h2>
+
+                    <p>
+                        Acompanhe seu progresso
+                    </p>
+
+                </div>
+
+
+
+                <!-- PORCENTAGEM -->
+
+                <div class="progresso-porcentagem">
+
+                    <strong id="progresso-numero">
+                        0%
+                    </strong>
+
+                    <span>
+                        concluído
+                    </span>
+
+                </div>
+
+
+
+                <!-- BARRA -->
+
+                <div class="barra-container">
+
+                    <div
+                        id="barra-progresso"
+                        class="barra-progresso"
+                    ></div>
+
+                </div>
+
+
+
+                <!-- ETAPAS -->
+
+                <div class="etapas">
+
+
+                    <!-- DADOS PESSOAIS -->
+
+                    <div
+                        class="etapa etapa-atual"
+                        data-campo="dados_pessoais"
+                    >
+
+                        <div class="etapa-icone">
+                            1
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Dados pessoais
+                            </strong>
+
+                            <span>
+                                Nome e contato
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EXPERIÊNCIA -->
+
+                    <div
+                        class="etapa"
+                        data-campo="experiencias"
+                    >
+
+                        <div class="etapa-icone">
+                            2
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Experiência
+                            </strong>
+
+                            <span>
+                                Onde você trabalhou
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FORMAÇÃO -->
+
+                    <div
+                        class="etapa"
+                        data-campo="formacoes"
+                    >
+
+                        <div class="etapa-icone">
+                            3
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Formação
+                            </strong>
+
+                            <span>
+                                Seus estudos
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CURSOS -->
+
+                    <div
+                        class="etapa"
+                        data-campo="certificacoes"
+                    >
+
+                        <div class="etapa-icone">
+                            4
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Cursos
+                            </strong>
+
+                            <span>
+                                Cursos e certificados
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- HABILIDADES -->
+
+                    <div
+                        class="etapa"
+                        data-campo="habilidades"
+                    >
+
+                        <div class="etapa-icone">
+                            5
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Habilidades
+                            </strong>
+
+                            <span>
+                                O que você sabe fazer
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- IDIOMAS -->
+
+                    <div
+                        class="etapa"
+                        data-campo="idiomas"
+                    >
+
+                        <div class="etapa-icone">
+                            6
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Idiomas
+                            </strong>
+
+                            <span>
+                                Línguas que conhece
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RESUMO -->
+
+                    <div
+                        class="etapa"
+                        data-campo="resumo"
+                    >
+
+                        <div class="etapa-icone">
+                            7
+                        </div>
+
+                        <div class="etapa-texto">
+
+                            <strong>
+                                Resumo profissional
+                            </strong>
+
+                            <span>
+                                Apresentação profissional
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        id="btn-gerar-curriculo"
+                        type="button"
+                        style="display: none;"
+                    >
+                        Gerar meu currículo em PDF
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- RODAPÉ DO PAINEL -->
+
+                <div class="progresso-footer">
+
+                    <p id="mensagem-progresso">
+
+                        Vamos começar!
+
+                    </p>
+
+                </div>
+
+
+            </aside>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        src="{{ url_for('static', filename='js/ia.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
