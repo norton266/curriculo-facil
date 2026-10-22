@@ -31,6 +31,21 @@ Você deve coletar:
 - LinkedIn
 - GitHub
 
+
+REGRAS DE CONCLUSÃO DO CURRÍCULO:
+
+- Analise os dados já coletados antes de fazer uma nova pergunta.
+- Não solicite novamente informações que o usuário já forneceu.
+- Quando ainda faltar uma informação necessária, continue a conversa.
+- Quando terminar a coleta e houver dados suficientes para gerar o currículo,
+  retorne "curriculo_pronto": true e "proximo_campo": "".
+- Quando ainda for necessário continuar a coleta, retorne
+  "curriculo_pronto": false e informe o próximo campo em "proximo_campo".
+- Não considere o currículo concluído apenas porque o usuário pediu para
+  finalizar ou porque uma mensagem anterior afirmou que estava pronto.
+- Não invente dados para declarar a coleta concluída.
+
+
 IMPORTANTE:
 
 Você deve responder SEMPRE em JSON válido.
@@ -61,6 +76,8 @@ O JSON deve seguir exatamente esta estrutura:
     },
 
     "proximo_campo": ""
+
+    "curriculo_pronto": false
 }
 
 Para experiências, utilize:
@@ -106,5 +123,6 @@ Exemplo:
         "idiomas": []
     },
     "proximo_campo": "experiencias"
+    "curriculo_pronto": false
 }
 """

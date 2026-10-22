@@ -19,80 +19,82 @@ const numeroProgresso =
 const mensagemProgresso =
     document.getElementById("mensagem-progresso");
 
-const btnGerar = document.getElementById(
+const btnGerarCurriculo = document.getElementById(
     "btn-gerar-curriculo"
 );
 
-btnGerar.addEventListener(
+btnGerarCurriculo.addEventListener(
     "click",
-    async function () {
+    gerarCurriculoPDF
+);
 
-        btnGerar.disabled = true;
+async function gerarCurriculoPDF() {
 
-        btnGerar.textContent =
-            "Gerando currículo...";
+    btnGerarCurriculo.disabled = true;
+    btnGerarCurriculo.textContent = "Gerando currículo...";
 
-        try {
+    try {
 
-            const resposta = await fetch(
-                "/api/ia/gerar",
-                {
-                    method: "POST"
-                }
-            );
-
-            if (!resposta.ok) {
-
-                const erro =
-                    await resposta.json();
-
-                alert(
-                    erro.erro ||
-                    "Não foi possível gerar o currículo."
-                );
-
-                return;
+        const resposta = await fetch(
+            "/api/ia/gerar",
+            {
+                method: "POST"
             }
+        );
 
-            const blob =
-                await resposta.blob();
+        if (!resposta.ok) {
 
-            const url =
-                window.URL.createObjectURL(blob);
+            const erro = await resposta.json();
 
-            const link =
-                document.createElement("a");
-
-            link.href = url;
-
-            link.download =
-                "curriculo.pdf";
-
-            document.body.appendChild(link);
-
-            link.click();
-
-            link.remove();
-
-            window.URL.revokeObjectURL(url);
-
-        } catch (erro) {
-
-            console.error(erro);
+            console.error(
+                "Erro ao gerar currículo:",
+                erro
+            );
 
             alert(
-                "Erro ao gerar o currículo."
+                erro.detalhes
+                    ? erro.detalhes.join("\n")
+                    : "Não foi possível gerar o currículo."
             );
 
-        } finally {
-
-            btnGerar.disabled = false;
-
-            btnGerar.textContent =
-                "Gerar meu currículo em PDF";
+            return;
         }
+
+        const blob = await resposta.blob();
+
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "curriculo.pdf";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+        window.URL.revokeObjectURL(url);
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao gerar PDF:",
+            erro
+        );
+
+        alert(
+            "Ocorreu um erro ao gerar o currículo."
+        );
+
+    } finally {
+
+        btnGerarCurriculo.disabled = false;
+        btnGerarCurriculo.textContent =
+            "Gerar meu currículo em PDF";
     }
-);
+}
 
 
 /* =========================================
@@ -421,15 +423,12 @@ function atualizarProgresso(
    CURRÍCULO CONCLUÍDO
 ========================================= */
 
+
 function finalizarProgresso() {
 
-    barraProgresso.style.width =
-        "100%";
+    barraProgresso.style.width = "100%";
 
-
-    numeroProgresso.textContent =
-        "100%";
-
+    numeroProgresso.textContent = "100%";
 
     document
         .querySelectorAll(".etapa")
@@ -445,11 +444,14 @@ function finalizarProgresso() {
 
         });
 
-
     mensagemProgresso.textContent =
-        "Seu currículo está pronto! 🎉";
+        "Seu currículo está pronto!";
 
+    btnGerarCurriculo.style.display = "block";
+
+    btnGerarCurriculo.disabled = false;
 }
+
 
 
 
@@ -552,6 +554,10 @@ form.addEventListener(
             const dados =
                 await resposta.json();
 
+                console.log("Resposta completa da IA:", dados);
+                console.log("Currículo pronto:", dados.curriculo_pronto);
+                console.log("Próximo campo:", dados.proximo_campo);
+
 
             removerCarregando();
 
@@ -579,6 +585,16 @@ form.addEventListener(
                 atualizarProgresso(
                     dados.proximo_campo
                 );
+
+            }
+
+            if (dados.curriculo_pronto === true) {
+
+                finalizarProgresso();
+
+            } else {
+
+                btnGerarCurriculo.style.display = "none";
 
             }
 

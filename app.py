@@ -15,6 +15,10 @@ app = Flask(__name__)
 
 assistente = CurriculoAI()
 
+@app.route('/debug/estado-curriculo')
+def debug_estado_curriculo():
+    return jsonify(assistente.obter_curriculo())
+
 
 @app.route('/')
 def home():
@@ -42,8 +46,19 @@ def conversar_ia():
 
     return jsonify(resposta)
 
+
 @app.route('/api/ia/gerar', methods=['POST'])
 def gerar_curriculo_ia():
+
+    # Primeiro, verificamos se a IA concluiu a coleta.
+    if not assistente.curriculo_pronto:
+
+        return jsonify({
+            "erro": (
+                "Seu currículo ainda não está pronto. "
+                "Continue a conversa com o assistente."
+            )
+        }), 400
 
     dados = assistente.obter_curriculo()
 
@@ -51,9 +66,26 @@ def gerar_curriculo_ia():
         dados
     )
 
+    print("=== DEBUG CURRÍCULO ===")
+    print("Tipo do currículo:", type(curriculo).__name__)
+    print(
+        "Tipos das formações:",
+        [type(item).__name__ for item in curriculo.formacoes]
+    )
+    print(
+        "Tipos das experiências:",
+        [type(item).__name__ for item in curriculo.experiencias]
+    )
+    print("=======================")
+
+    # Segunda verificação: validamos novamente os dados
+    # antes de gerar o arquivo.
     erros = validar_curriculo(curriculo)
 
     if erros:
+
+        assistente.curriculo_pronto = False
+
         return jsonify({
             "erro": "Não foi possível gerar o currículo.",
             "detalhes": erros
@@ -68,6 +100,7 @@ def gerar_curriculo_ia():
         pdf,
         curriculo.nome
     )
+
 
 
 @app.route('/gerar', methods=['POST'])

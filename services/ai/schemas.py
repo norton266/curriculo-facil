@@ -63,3 +63,12 @@ class RespostaCurriculoSchema(BaseModel):
     proximo_campo: str = Field(
         description="Próximo campo que deve ser solicitado."
     )
+
+    curriculo_pronto: bool = Field(
+        default=False,
+        description=(
+            "True somente quando todos os dados necessários "
+            "foram coletados e a conversa pode ser finalizada. "
+            "False enquanto houver informações necessárias pendentes."
+        )
+    )
